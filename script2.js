@@ -18,11 +18,11 @@ let isTransitioning = false;
 // x et y sont en pourcentage de la largeur/hauteur de l'écran
 // rotation est en degrés
 const imagePositions = [
-    [2, 20, -8, 31],     // Image 1 : En haut à gauche, 70% de taille
-    [10, 85, 5, 40],     // Image 2 : En haut au milieu, 85% de taille
-    [75, 2, -12, 20],   // Image 3 : En haut à droite, 60% de taille
-    [75, 50, 10, 20],    // Image 4 : Au milieu à gauche, 75% de taille
-    [75, 45, -5, 20],    // Image 5 : Au centre, 90% de taille
+    [2, 2, -8, 25],     // Image 1 : En haut à gauche, 70% de taille
+    [2, 70, -5, 35],     // Image 2 : En haut au milieu, 85% de taille
+    [66, 2, 5, 27],   // Image 3 : En haut à droite, 60% de taille
+    [30, 3, 0, 27],    // Image 4 : Au milieu à gauche, 75% de taille
+    [40, 45, -5, 25],    // Image 5 : Au centre, 90% de taille
     [75, 55, 8, 20],     // Image 6 : Au milieu à droite, 65% de taille
     [75, 75, -10, 20],   // Image 7 : En bas à gauche, 80% de taille
     [75, 80, 6, 20],     // Image 8 : En bas au milieu, 70% de taille
