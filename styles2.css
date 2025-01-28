@@ -28,17 +28,17 @@ body {
     transform-origin: center;
     animation: appear 0.8s ease-out forwards;
     opacity: 0;
+    transition: transform 0.3s ease, width 0.3s ease, left 0.3s ease, top 0.3s ease;
 }
 
 .gallery-item:hover {
     transform: scale(1.05) rotate(0deg) !important;
     z-index: 2;
-    transition: all 0.3s ease;
 }
 
 .gallery-item img {
     width: 100%;
-    height: auto; /* Maintient le ratio d'aspect */
+    height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border: 5px solid white;
@@ -87,7 +87,7 @@ body {
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
     border: 8px solid white;
     transition: transform 0.5s ease, opacity 0.5s ease;
-    transform: scale();
+    transform: scale(1);
     opacity: 1;
 }
 
@@ -145,11 +145,11 @@ body {
 }
 
 .prev-btn {
-    left: -20px;
+    left: -55px;
 }
 
 .next-btn {
-    right: -20px;
+    right: -55px;
 }
 
 .volume-control {
@@ -188,4 +188,111 @@ body {
         opacity: 1;
         transform: scale(1) translateY(0) rotate(var(--rotation));
     }
+}
+
+/* Media Queries pour la responsivité */
+@media screen and (max-width: 1024px) {
+    .gallery {
+        padding: 20px;
+    }
+    
+    .gallery-item {
+        width: calc(var(--base-width) * 0.8) !important;
+    }
+    
+    .modal-content {
+        max-width: 95%;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .prev-btn {
+        left: -45px;
+    }
+    
+    .next-btn {
+        right: -45px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .gallery {
+        padding: 15px;
+    }
+    
+    .gallery-item {
+        width: calc(var(--base-width) * 0.6) !important;
+    }
+    
+    .close-btn {
+        top: -30px;
+        right: -30px;
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+    
+    .volume-control {
+        top: 10px;
+        right: 10px;
+        padding: 8px 15px;
+    }
+    
+    .volume-slider {
+        width: 80px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gallery {
+        padding: 10px;
+    }
+    
+    .gallery-item {
+        width: calc(var(--base-width) * 0.4) !important;
+    }
+    
+    .modal-content {
+        max-width: 100%;
+    }
+    
+    .close-btn {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+    }
+    
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        background: rgba(255, 255, 255, 0.8);
+    }
+    
+    .prev-btn {
+        left: 10px;
+    }
+    
+    .next-btn {
+        right: 10px;
+    }
+    
+    .volume-control {
+        padding: 5px 10px;
+    }
+    
+    .volume-slider {
+        width: 60px;
+    }
+}
+
+/* Ajout d'une variable CSS pour la gestion de la taille de base */
+:root {
+    --base-width: 100%;
 }
