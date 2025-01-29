@@ -5,8 +5,8 @@
 }
 
 body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    min-height: 100vh;
+    background-image: url("background.png");
+    position: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
 }
@@ -295,4 +295,30 @@ body {
 /* Ajout d'une variable CSS pour la gestion de la taille de base */
 :root {
     --base-width: 100%;
+}
+
+.eye-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    padding: 0 5px;
+}
+
+.eye-btn.hidden {
+    opacity: 0.5;
+}
+
+/* Modifier la classe hidden pour la galerie */
+.gallery.hidden .gallery-item {
+    opacity: 0 !important; /* Force l'opacité à 0 */
+    pointer-events: none;
+    animation: none !important; /* Désactive l'animation appear */
+    transition: opacity 0.3s ease;
+}
+
+/* Assurer que l'animation appear ne réapplique pas l'opacité */
+.gallery.hidden .gallery-item {
+    animation: none !important;
 }
