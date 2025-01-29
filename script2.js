@@ -11,7 +11,7 @@ const eyeBtn = document.getElementById('eyeBtn');
 let isHidden = false;
 let currentAudio = null;
 let currentIndex = 0;
-const totalImages = 10; // Ajustez ce nombre selon le nombre total d'images
+const totalImages = 6; // Ajustez ce nombre selon le nombre total d'images
 let isMuted = false;
 let isTransitioning = false;
 
