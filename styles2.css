@@ -248,6 +248,12 @@ body {
 }
 
 @media screen and (max-width: 480px) {
+    body {
+    background-image: url("background-phone.png");
+    position: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    }
     .gallery {
         padding: 10px;
     }
