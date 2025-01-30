@@ -11,7 +11,7 @@ const eyeBtn = document.getElementById('eyeBtn');
 let isHidden = false;
 let currentAudio = null;
 let currentIndex = 0;
-const totalImages = 6; // Ajustez ce nombre selon le nombre total d'images
+const totalImages = 7; // Ajustez ce nombre selon le nombre total d'images
 let isMuted = false;
 let isTransitioning = false;
 
@@ -25,8 +25,8 @@ const imagePositions = [
     [66, 2, 5, 27],   // Image 3 : En haut à droite, 60% de taille
     [30, 3, 0, 27],    // Image 4 : Au milieu à gauche, 75% de taille
     [40, 45, -5, 25],    // Image 5 : Au centre, 90% de taille
-    [75, 55, 8, 30],     // Image 6 : Au milieu à droite, 65% de taille
-    [75, 75, -10, 20],   // Image 7 : En bas à gauche, 80% de taille
+    [70, 55, 8, 30],     // Image 6 : Au milieu à droite, 65% de taille
+    [65, 75, 6, 35],   // Image 7 : En bas à gauche, 80% de taille
     [75, 80, 6, 20],     // Image 8 : En bas au milieu, 70% de taille
     [75, 70, -7, 20],    // Image 9 : En bas à droite, 75% de taille
     [75, 35, 9, 20],     // Image 10 : Position supplémentaire, 85% de taille
