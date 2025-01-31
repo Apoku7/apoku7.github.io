@@ -11,7 +11,7 @@ const eyeBtn = document.getElementById('eyeBtn');
 let isHidden = false;
 let currentAudio = null;
 let currentIndex = 0;
-const totalImages = 7; // Ajustez ce nombre selon le nombre total d'images
+const totalImages = 8; // Ajustez ce nombre selon le nombre total d'images
 let isMuted = false;
 let isTransitioning = false;
 
@@ -21,13 +21,13 @@ let isTransitioning = false;
 // rotation est en degrés
 const imagePositions = [
     [2, 2, -8, 25],     // Image 1 : En haut à gauche, 70% de taille
-    [2, 70, -5, 35],     // Image 2 : En haut au milieu, 85% de taille
+    [2, 55, -5, 30],     // Image 2 : En haut au milieu, 85% de taille
     [66, 2, 5, 27],   // Image 3 : En haut à droite, 60% de taille
     [30, 3, 0, 27],    // Image 4 : Au milieu à gauche, 75% de taille
-    [40, 45, -5, 25],    // Image 5 : Au centre, 90% de taille
+    [20, 65, -5, 25],    // Image 5 : Au centre, 90% de taille
     [70, 55, 8, 30],     // Image 6 : Au milieu à droite, 65% de taille
     [65, 75, 6, 35],   // Image 7 : En bas à gauche, 80% de taille
-    [75, 80, 6, 20],     // Image 8 : En bas au milieu, 70% de taille
+    [45, 50, -2, 20],     // Image 8 : En bas au milieu, 70% de taille
     [75, 70, -7, 20],    // Image 9 : En bas à droite, 75% de taille
     [75, 35, 9, 20],     // Image 10 : Position supplémentaire, 85% de taille
 ];
@@ -228,3 +228,109 @@ eyeBtn.addEventListener('click', () => {
     }
 });
 
+
+const tutorialOverlay = document.createElement('div');
+tutorialOverlay.id = 'tutorialOverlay';
+tutorialOverlay.classList.add('tutorial-overlay');
+document.body.appendChild(tutorialOverlay);
+
+const tutorialSteps = [
+    {
+        title: "Bienvenue sur la Galerie",
+        text: "Cette galerie est un hommage à Chips. Chaque personne a écrit un petit message destiné à Chips et a choisi une musique pour l'accompagner",
+        highlight: null
+    },
+    {
+        title: "Contrôle du Son",
+        text: "Utilisez ce bouton pour ajuster le volume ou couper le son. Chaque image a sa propre ambiance sonore !",
+        highlight: () => document.querySelector('.volume-control')
+    },
+    {
+        title: "Masquer la Galerie",
+        text: "Ce bouton permet de masquer temporairement toutes les images.",
+        highlight: () => document.getElementById('eyeBtn')
+    },
+    {
+        title: "Avertissement Mobile",
+        text: "Ce site fonctionne mieux sur ordinateur. L'expérience peut être limitée sur mobile.",
+        highlight: null
+    }
+];
+
+let currentTutorialStep = 0;
+
+function createTutorialModal() {
+    tutorialOverlay.innerHTML = `
+        <div class="tutorial-modal">
+            <h2 id="tutorialTitle"></h2>
+            <p id="tutorialText"></p>
+            <button id="tutorialNextBtn" class="tutorial-btn">Suivant</button>
+        </div>
+    `;
+    
+    const title = tutorialOverlay.querySelector('#tutorialTitle');
+    const text = tutorialOverlay.querySelector('#tutorialText');
+    const nextBtn = tutorialOverlay.querySelector('#tutorialNextBtn');
+    
+    function updateTutorial() {
+        const step = tutorialSteps[currentTutorialStep];
+        title.textContent = step.title;
+        text.textContent = step.text;
+        
+        // Supprimer les anciennes surlignages
+        document.querySelectorAll('.tutorial-highlight').forEach(el => el.remove());
+        
+        // Ajouter un nouveau surlignage si nécessaire
+        if (step.highlight) {
+            const highlightEl = step.highlight();
+            if (highlightEl) {
+                const highlight = document.createElement('div');
+                highlight.classList.add('tutorial-highlight');
+                const rect = highlightEl.getBoundingClientRect();
+                
+                highlight.style.position = 'fixed';
+                highlight.style.left = `${rect.left - 5}px`;
+                highlight.style.top = `${rect.top - 5}px`;
+                highlight.style.width = `${rect.width + 10}px`;
+                highlight.style.height = `${rect.height + 10}px`;
+                
+                document.body.appendChild(highlight);
+            }
+        }
+        
+        // Bouton final
+        nextBtn.textContent = currentTutorialStep === tutorialSteps.length - 1 ? 'Commencer' : 'Suivant';
+    }
+    
+    function nextStep() {
+        currentTutorialStep++;
+        
+        if (currentTutorialStep < tutorialSteps.length) {
+            if (currentTutorialStep === tutorialSteps.length - 1 && window.innerWidth > 1024) {
+                endTutorial();
+                return;
+            }
+            updateTutorial();
+        } else {
+            endTutorial();
+        }
+    }
+    
+    function endTutorial() {
+        tutorialOverlay.style.display = 'none';
+        // Supprimer tous les surlignages
+        document.querySelectorAll('.tutorial-highlight').forEach(el => el.remove());
+        localStorage.setItem('tutorialCompleted', 'true');
+    }
+    
+    nextBtn.addEventListener('click', nextStep);
+    updateTutorial();
+}
+
+// Démarrer le tutoriel au chargement si pas déjà vu
+window.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('tutorialCompleted')) {
+        createTutorialModal();
+        tutorialOverlay.style.display = 'flex';
+    }
+});
